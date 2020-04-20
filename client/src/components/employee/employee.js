@@ -16,6 +16,7 @@ class Employee extends Component {
 
   render () {
     return (
+      <h3>Welcome to the Employee page</h3>
       
     );
   }
