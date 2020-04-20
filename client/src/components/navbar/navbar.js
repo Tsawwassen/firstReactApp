@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './navbar.css';
 
+import {
+  Link
+} from "react-router-dom";
+
 
 class Navbar extends Component {
 
@@ -19,8 +23,8 @@ class Navbar extends Component {
       <div>
         <header className="App-header">
         Navbar
-        <a href="">Customer</a>
-        <a href="">Employee</a>
+        <Link to="/customer">Customer</Link>
+        <Link to="/employee">Employee</Link>
       </header>
       </div>
     );
