@@ -3,19 +3,27 @@ import './customers.css';
 
 class Customers extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      customers: []
+      customers: [],
+      nameValue: "",
+      idValue: 0
     }
 
     //Function binding (Note, must be in the constructor)
     this.addUser = this.addUser.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+ 
   }
 
-  addUser(){
+  handleNameChange(event){
+    this.setState({nameValue: event.target.value});
+  }
+
+  addUser(event){
     //Store the user that will be added
-    var userToAdd = {id: 4, firstname: "test add4"};
+    var userToAdd = {id: this.state.customers.length + 1, firstname: this.state.nameValue};
 
     //Get current array of cusomers when the addUser function is called
     var currentCustomers = this.state.customers;
@@ -41,6 +49,7 @@ class Customers extends Component {
         
   }
 
+
   componentDidMount(){
     fetch('/api/customers/all')
       .then(res => res.json())
@@ -56,9 +65,13 @@ class Customers extends Component {
           {this.state.customers.map(customer =>
             <li key={customer.id}>{customer.firstname}</li>)}
         </ul>
-        <button onClick={this.addUser}>
-          Button Text
-        </button>
+        <form onSubmit={this.addUser}>
+          <label>
+            Name:
+            <input type="text" value={this.state.nameValue} onChange={this.handleNameChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }

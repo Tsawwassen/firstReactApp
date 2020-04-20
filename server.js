@@ -30,7 +30,7 @@ app.get('/api/customers/all', (req, res) => {
 
 //Add a customer to the database
 app.post('/api/customers', (req, res) => {
-	res.json({reply: "hello from server"});
+	//res.json({reply: "hello from server"});
 
 	db.reactCollection.insert(req.body, (err, docs) =>{
 		if(err){
