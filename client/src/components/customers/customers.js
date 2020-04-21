@@ -46,7 +46,8 @@ class Customers extends Component {
           //Update customers in the state so that the DOM will re-render the list
           this.setState({currentCustomers});
         });
-        
+    //Prevents the page from refreshing
+    event.preventDefault();
   }
 
 
