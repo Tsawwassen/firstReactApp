@@ -21,7 +21,8 @@ class AppNavbar extends Component {
           <Navbar.Brand href="/">ReactApp</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link href="/customer">Customer</Nav.Link>
-             <Nav.Link href="/employee">Employee</Nav.Link>
+            <Nav.Link href="/employee">Employee</Nav.Link>
+            <Nav.Link href="/csv">CSV</Nav.Link>
           </Nav>
         </Navbar>
       </div>

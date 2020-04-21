@@ -8,6 +8,7 @@ import Customers from './components/customers/customers';
 import  './App.css';
 import AppNavbar from './components/appnavbar/appnavbar';
 import Employee from './components/employee/employee';
+import CSV from './components/csv/csv';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/customer">
             <Customers />
+          </Route>
+          <Route path="/csv">
+            <CSV />
           </Route>
         </Switch>
       </div>
