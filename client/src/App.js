@@ -6,14 +6,16 @@ import {
 } from "react-router-dom";
 import Customers from './components/customers/customers';
 import  './App.css';
-import Navbar from './components/navbar/navbar';
+import AppNavbar from './components/appnavbar/appnavbar';
 import Employee from './components/employee/employee';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <AppNavbar />
         <Switch>
           <Route path="/employee">
             <Employee />
