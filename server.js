@@ -30,8 +30,6 @@ app.get('/api/customers/all', (req, res) => {
 
 //Add a customer to the database
 app.post('/api/customers', (req, res) => {
-	//res.json({reply: "hello from server"});
-
 	db.reactCollection.insert(req.body, (err, docs) =>{
 		if(err){
 			console.log(err);
@@ -40,6 +38,34 @@ app.post('/api/customers', (req, res) => {
 			res.json({reply: "added"})
 		}
 	});
+});
+
+//Add multiple customers to the database
+app.post('/api/customers/batch', (req, res) => {
+	db.reactCollection.count({}, (err, result) =>{
+		if(err){
+			console.log("error");
+		} else{
+			//If the database was automatically adding the ID to the record, then this variable isnt needed
+			//Would probably create a race condition if two clients were trying to upload at the same time
+			nextID = result;
+
+			req.body.map((n) => {
+				nextID++
+				db.reactCollection.insert({id: nextID, n}, (err, result) => {
+					if(err){
+						console.log("error");
+					}else {
+						console.log("added");
+					}
+				})
+			});
+
+			res.json({reply: "added"});
+		}
+	})
+
+
 });
 
 //Using the `` allows you to use ${var} in the string
