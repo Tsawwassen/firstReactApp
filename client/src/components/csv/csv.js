@@ -15,23 +15,26 @@ class CSV extends Component {
     }
 
     //Expected headers that should be in the CSV file
-		this.EXPECTED_HEADER = [ "test", "name"].sort();
+		//this.EXPECTED_HEADER = [ "test", "name"].sort(); //BUG - Logic to check header is removing the headers when sending data to the server
 
 		//Headers received from CSV file
-		this.receivedHeader = [];
+		//this.receivedHeader = []; //BUG - Logic to check header is removing the headers when sending data to the server
 
 		//CSV Parser options
 		this.papaparseOptions = {
 	    header: true, 
 	    dynamicTyping: true,
 	    skipEmptyLines: true,
-	    transformHeader: (header) => {
+	    transformHeader: (header) => (
 	    	//This callback function is called once for each header in the CSV file (header: true)
-	     	header.toLowerCase().replace(/\W/g, '_');
+	     	header
+	     	.toLowerCase()
+	     	.replace(/\W/g, '_')
 
       	//Push headers to receivedHeader array
-        this.receivedHeader.push(header);
-    	}
+        //this.receivedHeader.push(header); //BUG - Logic to check header is removing the headers when sending data to the server
+
+    	)
   	}
 
   	/** Component Function binds **/
@@ -49,7 +52,7 @@ class CSV extends Component {
 		//console.log(csvData);
 		//console.log(fileInfo);
 
-		// Note about checking headers
+		// Note about checking headers //BUG - Logic to check header is removing the headers when sending data to the server
 		//-------------------------
 		//The below logic will test if the received header is the same as the expected header.
 		//The expected header is sorted when it is initialized, and the received header is checked before the two are compared
@@ -68,7 +71,7 @@ class CSV extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(csvData)
     };
-    
+
     fetch('/api/customers/batch', requestOptions)
       .then(response => response.json())
       .then(data => {

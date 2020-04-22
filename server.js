@@ -51,8 +51,9 @@ app.post('/api/customers/batch', (req, res) => {
 			nextID = result;
 
 			req.body.map((n) => {
+				console.log(req.body);
 				nextID++
-				db.reactCollection.insert({id: nextID, n}, (err, result) => {
+				db.reactCollection.insert({id: nextID, name: n.name}, (err, result) => {
 					if(err){
 						console.log("error");
 					}else {

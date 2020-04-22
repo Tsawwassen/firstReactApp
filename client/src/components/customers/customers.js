@@ -54,7 +54,7 @@ class Customers extends Component {
   componentDidMount(){
     fetch('/api/customers/all')
       .then(res => res.json())
-      .then(customers => this.setState({customers},() =>  console.log("Customers Fetched", customers)));
+      .then(customers => this.setState({customers}));
   }
 
 
@@ -64,7 +64,7 @@ class Customers extends Component {
         <h2>Customers hello</h2>
         <ul>
           {this.state.customers.map(customer =>
-            <li key={customer.id}>{customer.firstname}</li>)}
+            <li key={customer.id}>{customer.name}</li>)}
         </ul>
         <form onSubmit={this.addUser}>
           <label>
